@@ -23,8 +23,8 @@ FactoryGirl.define do
 
   factory :construction do
     line
-    start_station { FactoryGirl.create(:station) }
-    end_station { FactoryGirl.create(:station) }
+    association :start_station, factory: :station
+    association :end_station, factory: :station
     start_date { Date.today }
     end_date { Date.today + 3 }
     start_time { Time.now }

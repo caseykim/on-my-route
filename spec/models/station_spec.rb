@@ -6,7 +6,7 @@ RSpec.describe Station, type: :model do
     let!(:station) { FactoryGirl.create(:station) }
 
     it { should have_many(:lines_stations) }
-    it { should have_many(:lines) }
+    it { should have_many(:lines).through(:lines_stations) }
     it { should have_many(:constructions) }
 
     it { should validate_presence_of(:name) }
