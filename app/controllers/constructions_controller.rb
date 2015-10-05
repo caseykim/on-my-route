@@ -1,5 +1,4 @@
 class ConstructionsController < ApplicationController
-
   def index
     @constructions = Construction.all
   end
@@ -20,8 +19,10 @@ class ConstructionsController < ApplicationController
   end
 
   private
-  
+
   def construction_params
-    params.require(:construction).permit(:line_id, :start_station_id, :end_station_id, :start_date, :end_date, :start_time, :end_time, :description)
+    params.require(:construction).permit(:line_id,
+      :start_station_id, :end_station_id, :start_date, :end_date,
+      :start_time, :end_time, :description)
   end
 end
