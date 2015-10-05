@@ -42,8 +42,8 @@ feature 'User posts a new construction', %(
     expect(page).to have_content last_station.name
     expect(page).to have_content Date.today
     expect(page).to have_content Date.today + 5
-    expect(page).to have_content '17:00'
-    expect(page).to have_content '20:00'
+    expect(page).to have_content '05:00 PM'
+    expect(page).to have_content '08:00 PM'
   end
 
   scenario 'user filled out the form incorrectly' do
