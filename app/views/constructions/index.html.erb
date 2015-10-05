@@ -1,0 +1,41 @@
+<div class="row">
+  <% @constructions.each do |construction| %>
+    <fieldset>
+      <legend><%= construction.line.name %></legend>
+      <table>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Starting on</th>
+          <th>Ending on</th>
+          <th>Starts approximately at</th>
+          <th>Ends approximately at</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><%= construction.start_station.name %></td>
+          <td><%= construction.end_station.name %></td>
+          <td><%= construction.start_date %></td>
+          <td><%= construction.end_date %></td>
+          <td><%= construction.start_time %></td>
+          <td>
+            <% if construction.end_time != "" %>
+              <%= construction.end_time %>
+            <% else %>
+              Closing
+            <% end %>
+          </td>
+          <td>
+            <% if construction.description != "" %>
+              <%= construction.description %>
+            <% else %>
+              No description provided
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+    </fieldset>
+  <% end %>
+  <%= link_to "Post New Construction Alert", new_construction_path %>
+</div>
