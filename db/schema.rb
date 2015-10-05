@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20151005011922) do
     t.integer  "end_station_id",   null: false
     t.date     "start_date",       null: false
     t.date     "end_date",         null: false
-    t.time     "start_time",       null: false
-    t.time     "end_time"
+    t.string   "start_time",       null: false
+    t.string   "end_time"
     t.string   "description"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

@@ -6,8 +6,8 @@ class CreateConstructions < ActiveRecord::Migration
       t.belongs_to :end_station, null: false
       t.date :start_date, null: false
       t.date :end_date, null: false
-      t.time :start_time, null: false
-      t.time :end_time
+      t.string :start_time, null: false
+      t.string :end_time
       t.string :description
 
       t.timestamps null: false

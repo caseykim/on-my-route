@@ -1,0 +1,29 @@
+<div class="row">
+  <%= form_for @construction do |f| %>
+  <%= f.label :line %>
+  <%= f.collection_select :line_id, Line.all, :id, :name, prompt: "Select Line" %>
+
+  <%= f.label :start_station %>
+  <%= f.collection_select :start_station_id, Line.first.stations, :id, :name, prompt: "Select Line first" %>
+
+  <%= f.label :end_station %>
+  <%= f.collection_select :end_station_id, Line.first.stations, :id, :name, prompt: "Select Line first" %>
+
+  <%= f.label :start_date %>
+  <%= f.date_field :start_date, min: Date.today %>
+
+  <%= f.label :end_date %>
+  <%= f.date_field :end_date, min: Date.today %>
+
+  <%= f.label :start_time %>
+  <%= f.time_field :start_time %>
+
+  <%= f.label :end_time %>
+  <%= f.time_field :end_time %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= f.submit class: "button" %>
+  <% end %>
+</div>
