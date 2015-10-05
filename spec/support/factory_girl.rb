@@ -15,25 +15,16 @@ FactoryGirl.define do
     sequence(:name) { |n| "station #{n}" }
   end
 
-  factory :line_with_station, parent: :line do
-    ignore do
-      station { FactoryGirl.create(:station) }
-    end
-
-    after(:create) do |line, evaluator|
-      line.stations << evaluator.station
-    end
-  end
-
   factory :lines_station do
     line
     station
+    sequence(:station_sequence) { |n| n }
   end
 
   factory :construction do
     line
-    start_station
-    end_station
+    start_station { FactoryGirl.create(:station) }
+    end_station { FactoryGirl.create(:station) }
     start_date { Date.today }
     end_date { Date.today + 3 }
     start_time { Time.now }
