@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'shoulda-matchers'
 require File.join(File.dirname(__FILE__), 'support/valid_attribute')
 require File.join(File.dirname(__FILE__), 'support/factory_girl')
+require File.join(File.dirname(__FILE__), 'support/omni_auth_test_helper')
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -31,6 +32,11 @@ require 'capybara/rspec'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.before :each do
+    OmniAuth.config.mock_auth[:facebook] = nil
+  end
+  OmniAuth.config.test_mode = true
+  config.include OmniAuthTestHelper
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   resources :lines, only: :none do
     resources :stations, only: [:index]
   end
+
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/sign_out', to: 'sessions#destroy'
 end
