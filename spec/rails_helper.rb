@@ -32,11 +32,9 @@ require 'capybara/rspec'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-
   config.before :each do
     OmniAuth.config.mock_auth[:facebook] = nil
   end
-  
   OmniAuth.config.test_mode = true
   config.include OmniAuthTestHelper
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

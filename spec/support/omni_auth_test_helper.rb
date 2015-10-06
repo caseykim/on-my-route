@@ -1,5 +1,4 @@
 module OmniAuthTestHelper
-
   def mock_facebook_auth!
     OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(
       "provider" => "facebook",
