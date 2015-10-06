@@ -56,8 +56,6 @@ doc = Nokogiri::HTML(open(url,
   'From' => 'foo@bar.invalid',
   'Referer' => 'http://www.ruby-lang.org/'))
 station_names = []
-b_stations = []
-a_stations = []
 
 doc.css('td a').each do |a|
   if a.attributes['title']
@@ -80,7 +78,7 @@ n_quincy = station_names.index('North Quincy')
 last = station_names.length
 a_stations = station_names[0...n_quincy] + station_names[(braintree + 1)..last]
 
-station_names.each_with_index do |val, i|
+a_stations.each_with_index do |val, i|
   station = Station.find_or_create_by(name: val)
   LinesStation.create(line: line, station: station, station_sequence: i)
 end
@@ -161,7 +159,7 @@ d_stations = [
   'Brookline Hills',
   'Beaconsfield',
   'Reservoir',
-  'Chestnut Hill D Riverside Line',
+  'Chestnut Hill',
   'Newton Centre',
   'Newton Highlands',
   'Eliot',
