@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
+gem 'nokogiri'
 gem 'devise'
 gem 'foundation-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
