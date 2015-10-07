@@ -1,4 +1,9 @@
 <div class="row">
+  <%= form_tag constructions_path, method: 'get' do %>
+    <%= text_field_tag :search, params[:search], placeholder: 'All Lines' %>
+    <%= submit_tag "Search by Line name", name: nil, class: "button postfix" %>
+  <% end %>
+
   <% @constructions.each do |construction| %>
     <fieldset>
       <legend style="color:<%= construction.line.color %>">

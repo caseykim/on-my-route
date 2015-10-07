@@ -12,6 +12,12 @@ class Construction < ActiveRecord::Base
   validates :start_time, presence: true
   validate :end_time_after_start_time
 
+  private
+
+  def self.search(query)
+    joins(:line).where("name ilike ?", "%#{query}%")
+  end
+
   def end_date_after_start_date
     return if end_date.blank? || start_date.blank?
 
