@@ -30,7 +30,7 @@ station_names.each_with_index do |val, i|
 end
 
 # Blue
-color = '#2953bf'
+color = '#3857a6'
 line = Line.create(name: 'Blue', color: color)
 station_names = [
   'Wonderland',

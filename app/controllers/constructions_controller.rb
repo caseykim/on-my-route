@@ -1,6 +1,10 @@
 class ConstructionsController < ApplicationController
   def index
-    @constructions = Construction.all
+    if params[:search]
+      @constructions = Construction.search(params[:search])
+    else
+      @constructions = Construction.all
+    end
   end
 
   def new
