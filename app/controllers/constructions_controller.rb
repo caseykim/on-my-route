@@ -8,13 +8,17 @@ class ConstructionsController < ApplicationController
   end
 
   def new
-    @construction = Construction.new
+    if signed_in?
+      @construction = Construction.new
+    else
+      authenticate_user!
+    end
   end
 
   def create
-    @construction = Construction.new(construction_params)
+    @construction = current_user.constructions.new(construction_params)
     if @construction.save
-      flash[:success] = 'New construction successfully added.'
+      flash[:success] = 'New construction added successfully.'
       redirect_to constructions_path
     else
       flash[:alert] = @construction.errors.full_messages.join(', ')

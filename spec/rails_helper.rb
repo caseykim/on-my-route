@@ -9,6 +9,7 @@ require 'shoulda-matchers'
 require File.join(File.dirname(__FILE__), 'support/valid_attribute')
 require File.join(File.dirname(__FILE__), 'support/factory_girl')
 require File.join(File.dirname(__FILE__), 'support/omni_auth_test_helper')
+require File.join(File.dirname(__FILE__), 'support/sign_in_helper')
 require 'capybara/rspec'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -37,6 +38,7 @@ RSpec.configure do |config|
   end
   OmniAuth.config.test_mode = true
   config.include OmniAuthTestHelper
+  config.include SignInHelper
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
