@@ -24,13 +24,9 @@ feature 'User posts a new construction', %(
   let(:user) { FactoryGirl.create(:user) }
 
   scenario 'user cannot add a new construction if not signed in' do
-    line = Line.first
-    first_station = line.stations.first
-    last_station = line.stations.last
-
     visit new_construction_path
 
-    expect(page).to have_content('You need to sign in or sign up before continuing.')
+    expect(page).to have_content('need to sign in or sign up before')
     expect(current_path).to eq new_user_session_path
   end
 
