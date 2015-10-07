@@ -1,36 +1,37 @@
 require 'rails_helper'
 
-feature 'User posts a new construction', %(
+feature 'User edits a construction posting', %(
   As a user
-  I want to post a construction information
-  So that other users can benefit from it
+  I want to edit a construction information
+  So that I can correct or update construction information
 
   Acceptance Criteria
-  [x] I must provide which line the construction is on
-  [x] I must specify on what station does the construction start
-  [x] I must specify on what station does the construction end
-  [x] I must specify on what date the construction starts
-  [x] I must specify on what date the construction ends
-  [x] I must specify on what time the construction starts
-  [x] I must be presented with error if I fill out the form incorrectly
-  [x] I must see a success notice and be redirected to constructions index page
+  [ ] I must be the user who post the constuction originally
+  [ ] Other users cannot edit my constuction posting
+  [ ] I must be authenticated in order to make changes
+  [ ] I must be able to change the line
+  [ ] I must be able to change the start station
+  [ ] I must be able to change the end station
+  [ ] I must be able to change the start date
+  [ ] I must be able to change the end date
+  [ ] I must be able to change the start time
+  [ ] I must see a confirmation and be redirected to constructions path
+  [ ] I must see an error if I complete the form incorrectly
+  [ ] I can optionally add or delete the description
 ) do
 
-  before do
-    3.times { FactoryGirl.create(:line) }
-    3.times { FactoryGirl.create(:lines_station, line: Line.first) }
-  end
-
   let(:user) { FactoryGirl.create(:user) }
+  let(:construction) { FactoryGirl.create(:construction, user: user) }
 
-  scenario 'user cannot add a new construction if not signed in' do
-    visit new_construction_path
+
+  scenario 'user cannot edit construction if not signed in' do
+    visit edit_construction_path(construction)
 
     expect(page).to have_content('need to sign in or sign up before')
     expect(current_path).to eq new_user_session_path
   end
 
-  scenario 'user adds a new construction' do
+  xscenario 'user adds a new construction' do
     line = Line.first
     first_station = line.stations.first
     last_station = line.stations.last
@@ -65,7 +66,7 @@ feature 'User posts a new construction', %(
     end
   end
 
-  scenario 'user filled out the form incorrectly' do
+  xscenario 'user filled out the form incorrectly' do
     sign_in user
     visit new_construction_path
     click_on 'Create Construction'

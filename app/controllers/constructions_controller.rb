@@ -26,6 +26,9 @@ class ConstructionsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   private
 
   def construction_params
