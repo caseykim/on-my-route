@@ -7,21 +7,33 @@
 </head>
 <body>
 
-  <nav class="top-bar">
+  <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
       <li class="name">
-        <h1><a href="/">OnMyRoute</a></h1>
+        <h1><a href="/">On My Route</a></h1>
       </li>
     </ul>
 
     <section class="top-bar-section">
+      <!-- Left Nav Section -->
+      <ul class="left">
+      </ul>
+      <!-- Right Nav Section -->
       <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <% if current_user %>
+          <li class="has-dropdown">
+            <a href="#"><%= image_tag "#{current_user.image}", id: "profile_photo"%></a>
+            <ul class="dropdown">
+              <li>
+                <%= link_to "Edit Profile", edit_user_registration_path %>
+              </li>
+              <li>
+                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
         <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <li><%= link_to 'Sign In with Facebook', '/auth/facebook' %></li>
         <%- end -%>
       </ul>
     </section>

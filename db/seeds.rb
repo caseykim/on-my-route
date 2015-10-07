@@ -9,6 +9,7 @@ end
 
 # Orange
 line_name = 'Orange'
+color = '#ed8422'
 url = "http://www.mbta.com/schedules_and_maps/subway/lines/?route=#{line_name.upcase}"
 doc = Nokogiri::HTML(open(url,
   'User-Agent' => "Ruby/#{RUBY_VERSION}",
@@ -22,14 +23,15 @@ doc.css('td a').each do |a|
 end
 station_names.map! { |name| name.sub(/ Station/, '') }
 
-line = Line.create(name: line_name)
+line = Line.create(name: line_name, color: color)
 station_names.each_with_index do |val, i|
   station = Station.find_or_create_by(name: val)
   LinesStation.create(line: line, station: station, station_sequence: i)
 end
 
 # Blue
-line = Line.create(name: 'Blue')
+color = '#2953bf'
+line = Line.create(name: 'Blue', color: color)
 station_names = [
   'Wonderland',
   'Revere Beach',
@@ -64,7 +66,8 @@ doc.css('td a').each do |a|
 end
 station_names.map! { |name| name.sub(/ Station/, '') }
 
-line = Line.create(name: 'Red(Braintree)')
+color = '#cf4335'
+line = Line.create(name: 'Red(Braintree)', color: color)
 braintree = station_names.index('Braintree')
 b_stations = station_names[0..braintree]
 
@@ -73,7 +76,7 @@ b_stations.each_with_index do |val, i|
   LinesStation.create(line: line, station: station, station_sequence: i)
 end
 
-line = Line.create(name: 'Red(Ashmont)')
+line = Line.create(name: 'Red(Ashmont)', color: color)
 n_quincy = station_names.index('North Quincy')
 last = station_names.length
 a_stations = station_names[0...n_quincy] + station_names[(braintree + 1)..last]
@@ -85,6 +88,7 @@ end
 
 # Green
 line_name = 'Green'
+color = '#416f3f'
 url = "http://www.mbta.com/schedules_and_maps/subway/lines/?route=#{line_name.upcase}"
 doc = Nokogiri::HTML(open(url,
   'User-Agent' => "Ruby/#{RUBY_VERSION}",
@@ -102,7 +106,7 @@ park = g_stations.index('Park Street')
 north = g_stations.index('North')
 copley = g_stations.index('Copley')
 
-line = Line.create(name: line_name + ' B')
+line = Line.create(name: line_name + ' B', color: color)
 b_stations = [
   'Blandford Street',
   'Boston University East',
@@ -129,7 +133,7 @@ b_stations.each_with_index do |val, i|
   LinesStation.create(line: line, station: station, station_sequence: i)
 end
 
-line = Line.create(name: line_name + ' C')
+line = Line.create(name: line_name + ' C', color: color)
 c_stations = [
   'St. Marys Street',
   'Hawes Street',
@@ -151,7 +155,7 @@ c_stations.each_with_index do |val, i|
   LinesStation.create(line: line, station: station, station_sequence: i)
 end
 
-line = Line.create(name: line_name + ' D')
+line = Line.create(name: line_name + ' D', color: color)
 d_stations = [
   'Fenway',
   'Longwood',
@@ -173,7 +177,7 @@ d_stations.each_with_index do |val, i|
   LinesStation.create(line: line, station: station, station_sequence: i)
 end
 
-line = Line.create(name: line_name + ' E')
+line = Line.create(name: line_name + ' E', color: color)
 e_stations = [
   'Prudential',
   'Symphony',

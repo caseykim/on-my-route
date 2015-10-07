@@ -10,7 +10,8 @@ feature 'User signs in through Facebook', %(
     mock_facebook_auth!
 
     visit root_path
-    click_link "Sign In with Facebook"
+    click_link "Sign In"
+    click_link("Sign in with", href: "/auth/facebook")
 
     expect(page).to have_link("Sign Out", href: destroy_user_session_path)
     expect(current_path).to eq root_path
