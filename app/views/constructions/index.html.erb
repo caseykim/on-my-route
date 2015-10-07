@@ -1,7 +1,10 @@
 <div class="row">
   <% @constructions.each do |construction| %>
     <fieldset>
-      <legend><%= construction.line.name %></legend>
+      <legend style="color:<%= construction.line.color %>">
+        <%= fa_icon "subway" %>
+        <%= construction.line.name %>
+      </legend>
       <table>
         <tr>
           <th>From</th>
