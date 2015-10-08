@@ -49,6 +49,20 @@ class ConstructionsController < ApplicationController
     end
   end
 
+  def destroy
+    construction = Construction.find(params[:id])
+    if signed_in? && current_user == construction.user
+      construction.destroy
+      flash[:success] = 'Construction deleted successfully.'
+      redirect_to constructions_path
+    elsif !signed_in?
+      authenticate_user!
+    else
+      flash[:alert] = 'You have no permission to edit this posting'
+      redirect_to constructions_path
+    end
+  end
+
   private
 
   def construction_params
