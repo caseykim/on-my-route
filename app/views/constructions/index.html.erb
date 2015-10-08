@@ -9,6 +9,9 @@
       <legend style="color:<%= construction.line.color %>">
         <%= fa_icon "subway" %>
         <%= construction.line.name %>
+        <% if signed_in? && current_user == construction.user %>
+          <%= link_to "Edit", edit_construction_path(construction) %>
+        <% end %>
       </legend>
       <table>
         <tr>
