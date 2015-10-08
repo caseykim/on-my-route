@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :constructions, except: :show
+
   resources :lines, only: :none do
-    resources :stations, only: [:index]
+    resources :stations, only: :index
+    resources :constructions, only: :index
   end
 
   get '/auth/:provider/callback', to: 'sessions#create'
