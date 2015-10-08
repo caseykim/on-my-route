@@ -27,6 +27,26 @@ class ConstructionsController < ApplicationController
   end
 
   def edit
+    construction = Construction.find(params[:id])
+    if signed_in? && current_user == construction.user
+      @construction = construction
+    elsif !signed_in?
+      authenticate_user!
+    else
+      flash[:alert] = 'You have no permission to edit this posting'
+      redirect_to constructions_path
+    end
+  end
+
+  def update
+    @construction = Construction.find(params[:id])
+    if @construction.update_attributes(construction_params)
+      flash[:success] = 'Construction updated successfully.'
+      redirect_to constructions_path
+    else
+      flash[:alert] = @construction.errors.full_messages.join(", ")
+      render :edit
+    end
   end
 
   private

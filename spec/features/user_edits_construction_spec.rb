@@ -6,23 +6,27 @@ feature 'User edits a construction posting', %(
   So that I can correct or update construction information
 
   Acceptance Criteria
-  [ ] I must be the user who post the constuction originally
-  [ ] Other users cannot edit my constuction posting
-  [ ] I must be authenticated in order to make changes
-  [ ] I must be able to change the line
-  [ ] I must be able to change the start station
-  [ ] I must be able to change the end station
-  [ ] I must be able to change the start date
-  [ ] I must be able to change the end date
-  [ ] I must be able to change the start time
-  [ ] I must see a confirmation and be redirected to constructions path
+  [x] I must be the user who post the constuction originally
+  [x] Other users cannot edit my constuction posting
+  [x] I must be authenticated in order to make changes
+  [x] I must be able to change the line
+  [x] I must be able to change the start station
+  [x] I must be able to change the end station
+  [x] I must be able to change the start date
+  [x] I must be able to change the end date
+  [x] I must be able to change the start time
+  [x] I must see a confirmation and be redirected to constructions path
   [ ] I must see an error if I complete the form incorrectly
-  [ ] I can optionally add or delete the description
+  [x] I can optionally add or delete the description
 ) do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:construction) { FactoryGirl.create(:construction, user: user) }
 
+  before do
+    2.times { FactoryGirl.create(:line) }
+    3.times { FactoryGirl.create(:lines_station, line: Line.first) }
+  end
 
   scenario 'user cannot edit construction if not signed in' do
     visit edit_construction_path(construction)
@@ -31,30 +35,39 @@ feature 'User edits a construction posting', %(
     expect(current_path).to eq new_user_session_path
   end
 
-  xscenario 'user adds a new construction' do
+  scenario 'user cannot edit construction posting of others' do
+    other_user = FactoryGirl.create(:user)
+    sign_in(other_user)
+    visit edit_construction_path(construction)
+
+    expect(page).to have_content('You have no permission to edit this posting')
+    expect(current_path).to eq constructions_path
+  end
+
+  scenario 'user edits construction posting' do
+    sign_in(user)
+    visit edit_construction_path(construction)
     line = Line.first
-    first_station = line.stations.first
-    last_station = line.stations.last
-    sign_in user
 
-    visit new_construction_path
     select line.name, from: 'construction[line_id]'
-    select first_station.name, from: 'construction[start_station_id]'
-    select last_station.name, from: 'construction[end_station_id]'
-    fill_in 'Start date', with: Date.today
-    fill_in 'End date', with: Date.today + 5
-    fill_in 'Start time', with: '05:00 PM'
-    fill_in 'End time', with: '08:00 PM'
-    click_on 'Create Construction'
+    select line.stations[1].name, from: 'construction[start_station_id]'
+    select line.stations[2].name, from: 'construction[end_station_id]'
+    fill_in 'Start date', with: Date.today + 7
+    fill_in 'End date', with: Date.today + 10
+    fill_in 'Start time', with: '08:45 PM'
+    fill_in 'End time', with: '10:00 PM'
+    fill_in 'Description', with: 'updated information'
+    click_on 'Update Construction'
 
-    expect(page).to have_content('New construction added successfully.')
+    expect(page).to have_content('Construction updated successfully.')
     expect(page).to have_content line.name
-    expect(page).to have_content first_station.name
-    expect(page).to have_content last_station.name
-    expect(page).to have_content Date.today
-    expect(page).to have_content Date.today + 5
-    expect(page).to have_content '05:00 PM'
-    expect(page).to have_content '08:00 PM'
+    expect(page).to have_content line.stations[1].name
+    expect(page).to have_content line.stations[2].name
+    expect(page).to have_content Date.today + 7
+    expect(page).to have_content Date.today + 10
+    expect(page).to have_content '08:45 PM'
+    expect(page).to have_content '10:00 PM'
+    expect(page).to have_content 'updated information'
 
     Construction.all.each do |construction|
       expect(page).to have_content construction.line.name
@@ -66,17 +79,16 @@ feature 'User edits a construction posting', %(
     end
   end
 
-  xscenario 'user filled out the form incorrectly' do
-    sign_in user
-    visit new_construction_path
-    click_on 'Create Construction'
+  scenario 'user filled out the form incorrectly' do
+    sign_in(user)
+    visit edit_construction_path(construction)
 
-    expect(page).to have_content("Line can't be blank")
-    expect(page).to have_content("Start station can't be blank")
-    expect(page).to have_content("End station can't be blank")
-    expect(page).to have_content("Start date can't be blank")
-    expect(page).to have_content("End date can't be blank")
-    expect(page).to have_content("Start time can't be blank")
+    fill_in 'Start time', with: '08:45 PM'
+    fill_in 'End time', with: '08:00 PM'
+    fill_in 'Description', with: ''
+    click_on 'Update Construction'
+
+    expect(page).to have_content("End time can't be before the start time")
   end
 
 end
