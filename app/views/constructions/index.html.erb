@@ -10,7 +10,11 @@
         <%= fa_icon "subway" %>
         <%= construction.line.name %>
         <% if signed_in? && current_user == construction.user %>
-          <%= link_to "Edit", edit_construction_path(construction) %>
+          <%= link_to "edit", edit_construction_path(construction) %>
+          <%= link_to "delete", construction,
+            method: :delete,
+            style: "color:grey",
+            data: {confirm: "Are you sure?"} %>
         <% end %>
       </legend>
       <table>
