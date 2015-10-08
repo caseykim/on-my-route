@@ -1,6 +1,9 @@
 class ConstructionsController < ApplicationController
   def index
-    if params[:search]
+    if params[:line_id]
+      line = Line.find(params[:line_id])
+      @constructions = line.constructions
+    elsif params[:search]
       @constructions = Construction.search(params[:search])
     else
       @constructions = Construction.all
