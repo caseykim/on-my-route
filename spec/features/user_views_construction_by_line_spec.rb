@@ -31,7 +31,7 @@ feature 'User views constructions by line', %(
 
   scenario 'user only sees constructions on the line they selected' do
     other_line = FactoryGirl.create(:line)
-    other_constructions = FactoryGirl.create(:construction, line: other_line)
+    FactoryGirl.create(:construction, line: other_line)
     visit line_constructions_path(line)
 
     line.constructions.each do |construction|
