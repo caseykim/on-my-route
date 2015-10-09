@@ -20,8 +20,14 @@ $neutral: #d9d9d9;
 
 @import "font-awesome";
 
+body {
+  background: #71868f;
+  font-weight: 300;
+  color: #f0f0f0;
+  font-family: 'Lato', Arial, sans-serif;
+}
+
 .main {
-  background-color: rgb(213, 203, 186);
   padding-top: 20px;
 }
 
