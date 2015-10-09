@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'constructions#index'
+  root 'homes#index'
   devise_for :users
 
   resources :constructions, except: :show
