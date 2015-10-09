@@ -24,6 +24,13 @@ legend a {
   font-weight: lighter;
 }
 
+.search-form {
+
+  .button {
+    background-color: rgb(89, 84, 84);
+  };
+}
+
 .side-column {
   font-weight: lighter;
   text-align: center;
@@ -37,7 +44,7 @@ legend a {
     box-shadow: 0 1px 0 rgb(204, 204, 204),
       0 2px 0 rgb(201, 201, 201),
       0 3px 0 rgb(187, 187, 187),
-      0 4px 0 rgb(185, 185, 185), 
+      0 4px 0 rgb(185, 185, 185),
       0 5px 0 rgb(170, 170, 170),
       0 6px 1px rgba(0,0,0,0.1),
       0 0 5px rgba(0,0,0,0.1),
