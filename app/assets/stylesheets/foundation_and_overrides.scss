@@ -1401,7 +1401,7 @@ $chicago-dirt: #b0a18f;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $chicago-dirt;
+$topbar-bg-color: $white;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin
@@ -1413,7 +1413,7 @@ $topbar-height: rem-calc(50);
 // $topbar-title-font-size: rem-calc(17);
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: $black;
+$topbar-link-color: $black;
 // $topbar-link-color-hover: $white;
 // $topbar-link-color-active: $chicago-dirt;
 // $topbar-link-color-active-hover: $white;
@@ -1421,9 +1421,9 @@ $topbar-height: rem-calc(50);
 $topbar-link-font-size: rem-calc(13);
 $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg: $topbar-bg;
-$topbar-link-bg-hover: $chicago-dirt;
+$topbar-link-bg-hover: $white;
 // $topbar-link-bg-color-hover: $charcoal;
-$topbar-link-bg-active: $chicago-dirt;
+$topbar-link-bg-active: $white;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;
 // $topbar-link-text-transform: uppercase;
