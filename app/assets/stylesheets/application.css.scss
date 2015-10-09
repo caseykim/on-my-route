@@ -20,8 +20,16 @@ $neutral: #d9d9d9;
 
 @import "font-awesome";
 
-legend a {
-  font-weight: lighter;
+.main {
+  background-color: rgb(213, 203, 186);
+  padding-top: 20px;
+}
+
+legend {
+
+  a {
+    font-weight: lighter;
+  };
 }
 
 .search-form {
@@ -29,6 +37,12 @@ legend a {
   .button {
     background-color: rgb(89, 84, 84);
   };
+}
+
+.construction {
+  padding: 0.1px 10px 1px 10px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .side-column {
@@ -41,6 +55,7 @@ legend a {
   };
 
   li {
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 1px 0 rgb(204, 204, 204),
       0 2px 0 rgb(201, 201, 201),
       0 3px 0 rgb(187, 187, 187),

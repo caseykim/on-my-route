@@ -1,3 +1,5 @@
+<section class="main">
+
 <div class="row">
   <div class="small-9 columns">
     <% form_tag constructions_path, method: 'get' do %>
@@ -12,6 +14,7 @@
     <% end %>
 
     <% @constructions.each do |construction| %>
+    <div class="construction">
       <fieldset id="<%= construction.id %>">
         <legend style="color:<%= construction.line.color %>">
           <%= fa_icon "subway" %>
@@ -57,7 +60,7 @@
           </tr>
         </table>
       </fieldset>
-      </fieldset>
+    </div>
     <% end %>
     <%= link_to "Post New Construction Alert", new_construction_path %>
   </div>
@@ -77,3 +80,4 @@
     </div>
   </div>
 </div>
+</section>

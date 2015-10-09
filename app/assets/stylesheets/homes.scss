@@ -31,15 +31,18 @@ body {
 	clear: both;
 }
 
-a {
-	color: $dark;
-	text-decoration: none;
-	outline: none;
-}
+.container {
 
-a:hover,
-a:focus {
-	color: $white;
+  a {
+  	color: $dark;
+  	text-decoration: none;
+  	outline: none;
+  };
+
+  a:hover,
+  a:focus {
+  	color: $white;
+  };
 }
 
 .codrops-header {
