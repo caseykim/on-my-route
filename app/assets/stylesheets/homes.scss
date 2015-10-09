@@ -34,14 +34,14 @@ body {
 .container {
 
   a {
-  	color: $dark;
-  	text-decoration: none;
-  	outline: none;
+    color: $dark;
+    outline: none;
+    text-decoration: none;
   };
 
   a:hover,
   a:focus {
-  	color: $white;
+    color: $white;
   };
 }
 
