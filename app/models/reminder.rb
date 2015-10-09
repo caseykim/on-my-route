@@ -6,14 +6,15 @@ class Reminder < ActiveRecord::Base
 
   def remind
     @twilio_number = ENV['TWILIO_NUMBER']
-    @client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+    sid = ENV['TWILIO_ACCOUNT_SID']
+    token = ENV['TWILIO_AUTH_TOKEN']
+    @client = Twilio::REST::Client.new(sid, token)
     # time_str = ((self.time).localtime).strftime("%I:%M%p on %b. %d, %Y")
-    reminder = "Hi #{self.user.name}. Time to exercise! #{}."
+    reminder = "Hi #{user.name}. Time to exercise! #{}."
     message = @client.account.messages.create(
       from: @twilio_number,
-      to: self.user.phone_number,
+      to: user.phone_number,
       body: reminder,
     )
-    puts message.to
   end
 end
