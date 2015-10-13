@@ -12,7 +12,7 @@ class Construction < ActiveRecord::Base
   validate :end_date_after_start_date
   validates :start_time, presence: true
   validate :end_time_after_start_time
-  
+
   def affected_stations
     stations = line.lines_stations
     start_i = stations.find_by(station: start_station).station_sequence
@@ -29,7 +29,7 @@ class Construction < ActiveRecord::Base
     stations = Station.where('name ilike ?', "%#{query}%")
     constructions = []
     stations.each do |station|
-      all.each do |construction|
+      all.find_each do |construction|
         if construction.affected_stations.include?(station)
           constructions << construction
         end
