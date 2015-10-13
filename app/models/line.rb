@@ -1,4 +1,5 @@
 class Line < ActiveRecord::Base
+  has_many :reminders
   has_many :lines_stations
   has_many :stations, through: :lines_stations
   has_many :constructions

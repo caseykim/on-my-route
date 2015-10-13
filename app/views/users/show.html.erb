@@ -1,0 +1,35 @@
+<% if @reminders.present? %>
+  <div class="row">
+    <h2>Reminder(s)</h2>
+    <ul>
+      <% @reminders.each do |reminder| %>
+        <li><%= reminder.line.name %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="content">
+    <button data-remote="true" class="button button-new-form">Set a reminder</button>
+    <div class="hide newform">
+      <h3>Receive a SMS reminder for upcoming constructions</h3>
+      <%= form_for [@user, @reminder] do |reminder_f| %>
+        <%= fields_for :user, @reminder.user do |user_f| %>
+          <%= user_f.label :name %>
+          <%= user_f.text_field :name, required: true %>
+
+          <%= user_f.label :phone_number %>
+          <i>Start with country code(+1 for US), no dashes or spaces allowed</i>
+          <%= user_f.phone_field :phone_number, required: true, placeholder: "+1XXXXXXX", pattern: '^\+1\d{3}\d{3}\d{4}$' %>
+        <% end %>
+
+        <%= reminder_f.label :line %>
+        <%= reminder_f.collection_select :line_id, Line.all, :id, :name, {include_blank: "Select Line"}, {required: true} %>
+
+        <%= reminder_f.submit class: "button" %>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to "Edit Profile", edit_user_registration_path %>
+</div>
