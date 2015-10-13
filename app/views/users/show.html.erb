@@ -1,11 +1,16 @@
 <% if @reminders.present? %>
   <div class="row">
-    <h2>Reminder(s)</h2>
-    <ul>
-      <% @reminders.each do |reminder| %>
-        <li><%= reminder.line.name %></li>
-      <% end %>
-    </ul>
+    <div class="reminder-container">
+      <h2>Reminder(s)</h2>
+      <ul>
+        <% @reminders.each do |reminder| %>
+          <legend style="color:<%= reminder.line.color %>">
+            <%= fa_icon "subway" %>
+            <%= reminder.line.name %>
+          </legend>
+        <% end %>
+      </ul>
+    </div>
   </div>
 <% end %>
 
@@ -31,5 +36,5 @@
       <% end %>
     </div>
   </div>
-  <%= link_to "Edit Profile", edit_user_registration_path %>
+  <%= link_to "Edit Profile", edit_user_registration_path, class: "info button" %>
 </div>
