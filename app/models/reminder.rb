@@ -15,7 +15,10 @@ class Reminder < ActiveRecord::Base
     sid = ENV['TWILIO_ACCOUNT_SID']
     token = ENV['TWILIO_AUTH_TOKEN']
     @client = Twilio::REST::Client.new(sid, token)
-    reminder = "Hi, #{user.name}. Construction on #{line.name} line will start within an hour. Visit http://localhost:3000/lines/#{line.id}/constructions for construction details"
+    reminder = "Hi, #{user.name}.
+      Construction on #{line.name} line will start within an hour.
+      Visit http://localhost:3000/lines/#{line.id}/constructions
+      for construction details"
     message = @client.account.messages.create(
       from: @twilio_number,
       to: user.phone_number,
@@ -25,11 +28,13 @@ class Reminder < ActiveRecord::Base
 
   def self.deliver_due
     time_range = Time.current.to_s(:time)..1.hour.from_now.to_s(:time)
-    joins({line: :constructions}).where(
-      constructions: {start_time: time_range}
-      ).where(
-      'start_date <= ? and end_date >= ?', Date.today, Date.today
-      )
+    joins({ line: :constructions }).where(
+      constructions: { start_time: time_range }
+    ).where(
+      'start_date <= ? and end_date >= ?',
+      Time.zone.today,
+      Time.zone.today
+    )
   end
 
   private

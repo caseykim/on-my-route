@@ -17,7 +17,8 @@ feature 'User requests a construction reminder', %(
 
   before do
     FactoryGirl.create(:construction, line: line)
-    FactoryGirl.create(:construction, line: line, start_time: 30.minutes.from_now)
+    time = 30.minutes.from_now
+    FactoryGirl.create(:construction, line: line, start_time: time)
   end
 
   scenario 'User signs up for a construction reminder' do
