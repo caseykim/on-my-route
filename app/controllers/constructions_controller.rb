@@ -3,8 +3,8 @@ class ConstructionsController < ApplicationController
     if params[:line_id]
       line = Line.find(params[:line_id])
       @constructions = line.constructions
-    elsif params[:search]
-      @constructions = Construction.search(params[:search])
+    elsif params[:station] && params[:station] != ""
+      @constructions = Construction.search(params[:station])
     else
       @constructions = Construction.all
     end

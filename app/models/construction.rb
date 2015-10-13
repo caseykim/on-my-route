@@ -12,11 +12,30 @@ class Construction < ActiveRecord::Base
   validate :end_date_after_start_date
   validates :start_time, presence: true
   validate :end_time_after_start_time
+  
+  def affected_stations
+    stations = line.lines_stations
+    start_i = stations.find_by(station: start_station).station_sequence
+    end_i = stations.find_by(station: end_station).station_sequence
+    range = start_i <= end_i ? start_i..end_i : end_i..start_i
+    stations.where(
+      station_sequence: range
+    ).joins(:station).all.map(&:station)
+  end
 
   private
 
   def self.search(query)
-    joins(:line).where("name ilike ?", "%#{query}%")
+    stations = Station.where('name ilike ?', "%#{query}%")
+    constructions = []
+    stations.each do |station|
+      all.each do |construction|
+        if construction.affected_stations.include?(station)
+          constructions << construction
+        end
+      end
+    end
+    constructions.uniq
   end
 
   def end_date_after_start_date

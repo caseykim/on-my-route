@@ -17,7 +17,7 @@ class Reminder < ActiveRecord::Base
     @client = Twilio::REST::Client.new(sid, token)
     reminder = "Hi, #{user.name}.
       Construction on #{line.name} line will start within an hour.
-      Visit http://localhost:3000/lines/#{line.id}/constructions
+      Visit http://onmyway-t.herokuapp.com/lines/#{line.id}/constructions
       for construction details"
     message = @client.account.messages.create(
       from: @twilio_number,
