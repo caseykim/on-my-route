@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'shareable'
 gem 'twilio-ruby'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
