@@ -16,6 +16,9 @@
           <a href="#"><%= image_tag "#{current_user.image}", class: "profile-photo", alt: "my-image"%></a>
           <ul class="dropdown">
             <li>
+              <%= link_to "My Profile", user_path(current_user) %>
+            </li>
+            <li>
               <%= link_to "Edit Profile", edit_user_registration_path %>
             </li>
             <li>
