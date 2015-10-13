@@ -1,4 +1,4 @@
-var prevVal;
+var prevVal, confirm;
 $(document).ready(function(){
   $('#user_name').focus(function() {
     prevVal = $(this).val();
