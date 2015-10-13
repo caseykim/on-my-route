@@ -28,7 +28,7 @@ class Reminder < ActiveRecord::Base
 
   def self.deliver_due
     time_range = Time.current.to_s(:time)..1.hour.from_now.to_s(:time)
-    joins({ line: :constructions }).where(
+    joins(line: :constructions).where(
       constructions: { start_time: time_range }
     ).where(
       'start_date <= ? and end_date >= ?',
