@@ -1,0 +1,51 @@
+$white: #ffffff;
+$oil: #333333;
+$transparent: transparent;
+
+.bubble {
+  background: $white;
+  border: $white solid 2px;
+  -moz-border-radius: 18px;
+  -webkit-border-radius: 18px;
+  border-radius: 18px;
+  -moz-box-shadow: -2px 2px 2px 0 rgba(67, 65, 65, 0.99);
+  -webkit-box-shadow: -2px 2px 2px 0 rgba(67, 65, 65, 0.99);
+  box-shadow: -2px 2px 2px 0 rgba(67, 65, 65, 0.99);
+  margin: 26px auto 0;
+  min-height: 200px;
+  padding: 5px;
+  position: relative;
+  width: auto;
+
+  li {
+    color: $oil;
+    font-weight: 500;
+    list-style: none;
+  };
+}
+
+.bubble:after {
+  border-color: $transparent rgb(255, 252, 255);
+  border-style: solid;
+  border-width: 10px 0 10px 13px;
+  content: "";
+  display: block;
+  position: absolute;
+  right: -13px;
+  top: 48px;
+  width: 0;
+  z-index: 1;
+}
+
+.bubble:before {
+  border-color: $transparent rgb(128, 128, 128);
+  border-style: solid;
+  border-width: 11px 0 11px 14px;
+  content: "";
+  display: block;
+  position: absolute;
+  right: -16px;
+  top: 47px;
+  width: 0;
+  z-index: 0;
+}
