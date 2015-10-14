@@ -1,40 +1,60 @@
-<% if @reminders.present? %>
-  <div class="row">
-    <div class="reminder-container">
-      <h2>Reminder(s)</h2>
-      <ul>
-        <% @reminders.each do |reminder| %>
-          <legend style="color:<%= reminder.line.color %>">
-            <%= fa_icon "subway" %>
-            <%= reminder.line.name %>
-          </legend>
-        <% end %>
-      </ul>
+<body class="reminder">
+  <section class="main">
+    <div class="row">
+      <div class="medium-5 columns">
+        <div class="bubble">
+          <h1>Reminders</h1>
+          <% if @reminders.present? %>
+            <ul>
+              <% @reminders.each do |reminder| %>
+                <li>
+                  <%= fa_icon "subway", style:"color:#{reminder.line.color}" %>
+                  <%= reminder.line.name %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
+          <div class="content">
+            <button data-remote="true" class="button button-new-form">Set a reminder</button>
+            <div class="hide newform">
+              <h3>Receive a SMS reminder for upcoming constructions</h3>
+              <%= form_for [@user, @reminder] do |reminder_f| %>
+                <%= fields_for :user, @reminder.user do |user_f| %>
+                  <%= user_f.label :name %>
+                  <%= user_f.text_field :name, required: true %>
+
+                  <%= user_f.label :phone_number %>
+                  <i>Start with country code(+1 for US), no dashes or spaces allowed</i>
+                  <%= user_f.phone_field :phone_number, required: true, placeholder: "+1XXXXXXX", pattern: '^\+1\d{3}\d{3}\d{4}$' %>
+                <% end %>
+
+                <%= reminder_f.label :line %>
+                <%= reminder_f.collection_select :line_id, Line.all, :id, :name, {include_blank: "Select Line"}, {required: true} %>
+
+                <%= reminder_f.submit class: "button" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="medium-7 columns">
+        <div class="letter">
+          <h4><%= @user.name %></h4>
+          <hr/>
+          <%= image_tag "#{current_user.image}", class: "right" %>
+          <table>
+            <tr>
+              <td>Phone number</td>
+              <td><%= @user.phone_number %></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><%= @user.email %></td>
+            </tr>
+          </table>
+          <%= link_to "Edit Profile", edit_user_registration_path, class: "right info button" %>
+        </div>
+      </div>
     </div>
-  </div>
-<% end %>
-
-<div class="row">
-  <div class="content">
-    <button data-remote="true" class="button button-new-form">Set a reminder</button>
-    <div class="hide newform">
-      <h3>Receive a SMS reminder for upcoming constructions</h3>
-      <%= form_for [@user, @reminder] do |reminder_f| %>
-        <%= fields_for :user, @reminder.user do |user_f| %>
-          <%= user_f.label :name %>
-          <%= user_f.text_field :name, required: true %>
-
-          <%= user_f.label :phone_number %>
-          <i>Start with country code(+1 for US), no dashes or spaces allowed</i>
-          <%= user_f.phone_field :phone_number, required: true, placeholder: "+1XXXXXXX", pattern: '^\+1\d{3}\d{3}\d{4}$' %>
-        <% end %>
-
-        <%= reminder_f.label :line %>
-        <%= reminder_f.collection_select :line_id, Line.all, :id, :name, {include_blank: "Select Line"}, {required: true} %>
-
-        <%= reminder_f.submit class: "button" %>
-      <% end %>
-    </div>
-  </div>
-  <%= link_to "Edit Profile", edit_user_registration_path, class: "info button" %>
-</div>
+  </section>
+</body>

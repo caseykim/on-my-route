@@ -115,6 +115,7 @@ $oil         : #333333;
 // $jet         : #222222;
 $black       : #000000;
 $chicago-dirt: #b0a18f;
+$elegant     : #e7e5e4;
 
 // We use these as default colors throughout
 // $primary-color: #008CBA;
@@ -1410,7 +1411,7 @@ $topbar-height: rem-calc(50);
 
 // Controlling the styles for the title in the top bar
 $topbar-title-weight: $font-weight-bold;
-// $topbar-title-font-size: rem-calc(17);
+$topbar-title-font-size: rem-calc(30);
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $black;
