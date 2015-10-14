@@ -4,19 +4,19 @@ h1 {
   font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
   font-size: 30px;
   text-align: center;
-  text-transform: uppercase;
   text-rendering: optimizeLegibility;
+  text-transform: uppercase;
 
   &.elegantshadow {
-    color: #131313;
+    color: rgb(19, 19, 19);
     background-color: $elegant;
-    letter-spacing: .15em;
+    letter-spacing: 0.15em;
     text-shadow:
-      1px -1px 0 #767676,
-      -1px 2px 1px #868585,
-      -2px 4px 1px #9e9c9c,
-      -3px 6px 1px #a8a6a6,
-      -4px 8px 1px #dbdad9,
-      -5px 10px 1px #e2e0df;
+      1px -1px 0 rgb(119, 119, 119),
+      -1px 2px 1px rgb(134, 133, 133),
+      -2px 4px 1px rgb(158, 156, 156),
+      -3px 6px 1px rgb(168, 167, 167),
+      -4px 8px 1px rgb(219, 218, 217),
+      -5px 10px 1px rgb(226, 223, 222);
   }
 }

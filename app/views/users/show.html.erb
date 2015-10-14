@@ -39,17 +39,35 @@
       </div>
       <div class="medium-7 columns">
         <div class="letter">
-          <h4><%= @user.name %></h4>
+          <h4>
+            <% if @user.name && @user.name != "" %>
+              <%= @user.name %>
+            <% else %>
+              Hello, user!
+            <% end %>
+          </h4>
           <hr/>
           <%= image_tag "#{current_user.image}", class: "right" %>
           <table>
             <tr>
               <td>Phone number</td>
-              <td><%= @user.phone_number %></td>
+              <td>
+                <% if @user.phone_number && @user.phone_number != "" %>
+                  <%= @user.phone_number %>
+                <% else %>
+                  has not been provided yet.
+                <% end %>
+              </td>
             </tr>
             <tr>
               <td>Email</td>
-              <td><%= @user.email %></td>
+              <td>
+                <% if @user.email && @user.email != "" %>
+                  <%= @user.email %>
+                <% else %>
+                  has not been provided yet.
+                <% end %>
+              </td>
             </tr>
           </table>
           <%= link_to "Edit Profile", edit_user_registration_path, class: "right info button" %>
