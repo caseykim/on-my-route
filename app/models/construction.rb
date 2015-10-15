@@ -17,10 +17,8 @@ class Construction < ActiveRecord::Base
   validate :end_time_after_start_time
 
   scope :search, -> (station_name) {
-    joins(:station_constructions)
-    .joins(:stations)
-    .merge(Station.by_name(station_name))
-    .uniq
+    joins(:station_constructions).joins(:stations
+    ).merge(Station.by_name(station_name)).uniq
   }
 
   after_create :create_station_constructions
