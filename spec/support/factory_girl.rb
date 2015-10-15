@@ -22,6 +22,12 @@ FactoryGirl.define do
 
   factory :line do
     sequence(:name) { |n| "line #{n}" }
+
+    factory :line_with_stations do
+      after(:create) do |line|
+        2.times { FactoryGirl.create(:lines_station, line: line) }
+      end
+    end
   end
 
   factory :station do
@@ -35,9 +41,12 @@ FactoryGirl.define do
   end
 
   factory :construction do
-    line
-    association :start_station, factory: :station
-    association :end_station, factory: :station
+    before(:create) do |construction|
+      line = FactoryGirl.create(:line_with_stations)
+      construction.start_station = line.stations.first
+      construction.end_station = line.stations.last
+      construction.line = line
+    end
     start_date { Date.today }
     end_date { Date.today + 3 }
     start_time { Time.now }
