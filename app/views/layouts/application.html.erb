@@ -14,11 +14,14 @@
       </div>
     </div>
   </div>
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
+  <%-  flash.each do |name, msg| %>
+    <% if msg.is_a?(String) %>
+      <div data-alert class="alert-box <%= name.to_s == 'notice' ? 'success' : 'alert' %>">
+        <%= content_tag :div, msg %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+  <% end %>
 
   <%= yield %>
 

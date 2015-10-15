@@ -1,0 +1,44 @@
+@mixin lato-book { font-family: 'Lato', sans-serif; font-weight: 300; }
+$white: #ffffff;
+
+.form {
+  margin: auto;
+  width: 80%;
+  max-width: 750px;
+  background: $white;
+
+  .button {
+    margin-top: 10px;
+    width: 100%;
+    display: inline;
+  };
+}
+
+.form .row {
+  padding: 0 2.5em;
+  max-width: none;
+  &.header {
+    padding: 1.5em 2em;
+    border-bottom: 1px solid grey;
+    background: url(/lights.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: $white;
+  }
+  &.body {
+    padding: .5em 2.5em 1em;
+  }
+}
+
+.form h1 {
+  @include lato-book;
+  color: $white;
+  display: inline-block;
+  font-weight: 100;
+  font-size: pxtoem(45, 16);
+  border-bottom: 1px solid hsla(100%, 100%, 100%, 0.3);
+  margin: 0 0 0.1em 0;
+  padding: 0 0 0.4em 0;
+}

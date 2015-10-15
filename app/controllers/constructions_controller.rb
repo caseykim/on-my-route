@@ -8,6 +8,7 @@ class ConstructionsController < ApplicationController
     else
       @constructions = Construction.all
     end
+    @construction = Construction.new
   end
 
   def new
