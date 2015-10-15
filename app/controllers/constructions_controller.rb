@@ -1,5 +1,6 @@
 class ConstructionsController < ApplicationController
   before_action :authenticate_user!, except: :index
+
   def index
     if params[:line_id]
       line = Line.find(params[:line_id])
