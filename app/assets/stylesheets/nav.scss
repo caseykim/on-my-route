@@ -5,15 +5,25 @@ $elegant: #e7e5e4;
 
 //************** NAVIGATION *******************************//
 .nav-container {
-  background-color: $white;
+  background: $white url("/top-bar.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: auto;
   border-bottom: 1px solid $neutral;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+
+  .title-area {
+    display: inline-block;
+    margin-top: 5px;
+  };
 }
 
 .dropdown {
   border: 1px solid $neutral;
   border-top: none;
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.7);
 
   li,
   a {
@@ -28,5 +38,6 @@ $elegant: #e7e5e4;
   border: 2px solid $neutral;
   border-radius: 50%;
   height: 40px;
+  margin-top: 1px;
   width: 40px;
 }

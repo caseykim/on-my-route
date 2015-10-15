@@ -3,17 +3,27 @@
     <div class="row">
       <div class="medium-5 columns">
         <div class="bubble">
+          <a href="#" data-remote="true" class="right manage-reminders">manage</a>
           <h1>Reminders</h1>
-          <% if @reminders.present? %>
-            <ul>
+          <ul class="reminder-list">
+            <% if @reminders.present? %>
               <% @reminders.each do |reminder| %>
                 <li>
                   <%= fa_icon "subway", style:"color:#{reminder.line.color}" %>
-                  <%= reminder.line.name %>
+                  &nbsp;<%= reminder.line.name %>
+                  <%= link_to content_tag(
+                     :i,
+                     nil,
+                     class: 'fa fa-trash-o'
+                    ), reminder,
+                    method: :delete,
+                    style: "color:grey",
+                    data: {confirm: "Are you sure?"},
+                    class: "hide delete right" %>
                 </li>
               <% end %>
-            </ul>
-          <% end %>
+            <% end %>
+          </ul>
           <div class="content">
             <button data-remote="true" class="button button-new-form">Set a reminder</button>
             <div class="hide newform">
