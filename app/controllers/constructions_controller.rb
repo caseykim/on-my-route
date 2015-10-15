@@ -1,4 +1,5 @@
 class ConstructionsController < ApplicationController
+  before_action :authenticate_user!, except: :index
   def index
     if params[:line_id]
       line = Line.find(params[:line_id])
@@ -11,11 +12,7 @@ class ConstructionsController < ApplicationController
   end
 
   def new
-    if signed_in?
-      @construction = Construction.new
-    else
-      authenticate_user!
-    end
+    @construction = Construction.new
   end
 
   def create

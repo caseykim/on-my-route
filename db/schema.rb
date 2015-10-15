@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012210950) do
+ActiveRecord::Schema.define(version: 20151015203905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20151012210950) do
   end
 
   add_index "reminders", ["user_id", "line_id"], name: "index_reminders_on_user_id_and_line_id", unique: true, using: :btree
+
+  create_table "station_constructions", force: :cascade do |t|
+    t.integer "station_id",      null: false
+    t.integer "construction_id", null: false
+  end
+
+  add_index "station_constructions", ["station_id", "construction_id"], name: "index_station_constructions_on_station_id_and_construction_id", unique: true, using: :btree
 
   create_table "stations", force: :cascade do |t|
     t.string "name", null: false
