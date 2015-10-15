@@ -20,7 +20,6 @@ FactoryGirl.define do
     line
   end
 
-
   factory :line do
     sequence(:name) { |n| "line #{n}" }
   end

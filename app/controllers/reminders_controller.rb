@@ -20,7 +20,8 @@ class RemindersController < ApplicationController
     @reminder = Reminder.find(params[:id])
     if current_user == @reminder.user
       @reminder.destroy
-      flash[:success] = "You will no longer get a reminder for #{@reminder.line.name}"
+      message = "You will no longer get a reminder for #{@reminder.line.name}"
+      flash[:success] = message
       redirect_to user_path(@reminder.user)
     else
       flash[:alert] = 'You have no permission to delete this reminder'
