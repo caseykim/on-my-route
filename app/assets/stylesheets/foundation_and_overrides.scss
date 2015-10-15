@@ -116,6 +116,7 @@ $oil         : #333333;
 $black       : #000000;
 $chicago-dirt: #b0a18f;
 $elegant     : #e7e5e4;
+$transparent: transparent;
 
 // We use these as default colors throughout
 // $primary-color: #008CBA;
@@ -921,7 +922,7 @@ $elegant     : #e7e5e4;
 // $orbit-caption-height: auto;
 
 // We use these to control the left/right nav styles
-// $orbit-nav-bg: transparent;
+// $orbit-nav-bg: $transparent;
 // $orbit-nav-bg-hover: rgba(0,0,0,0.3);
 // $orbit-nav-arrow-color: $white;
 // $orbit-nav-arrow-color-hover: $white;
@@ -973,7 +974,7 @@ $elegant     : #e7e5e4;
 // We use these for disabled anchor links
 // $pagination-link-unavailable-cursor: default;
 // $pagination-link-unavailable-font-color: $aluminum;
-// $pagination-link-unavailable-bg-active: transparent;
+// $pagination-link-unavailable-bg-active: $transparent;
 
 // We use these for currently selected anchor links
 // $pagination-link-current-background: $primary-color;
@@ -1317,7 +1318,7 @@ $elegant     : #e7e5e4;
 // $table-foot-padding: $table-head-padding;
 
 // These control the caption
-// table-caption-bg: transparent;
+// table-caption-bg: $transparent;
 // $table-caption-font-color: $table-head-font-color;
 // $table-caption-font-size: rem-calc(16);
 // $table-caption-font-weight: bold;
@@ -1402,8 +1403,8 @@ $elegant     : #e7e5e4;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: $white;
-// $topbar-bg: $topbar-bg-color;
+// $topbar-bg-color: $white;
+$topbar-bg: $transparent;
 
 // Height and margin
 $topbar-height: rem-calc(50);
@@ -1435,11 +1436,11 @@ $topbar-link-bg-active: $white;
 // $topbar-button-top: 7px;
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: $white;
-$topbar-dropdown-link-color: $black;
-// $topbar-dropdown-link-color-hover: $topbar-link-color-hover;
+$topbar-dropdown-bg: $transparent;
+$topbar-dropdown-link-color: $oil;
+$topbar-dropdown-link-color-hover: $black;
 $topbar-dropdown-link-bg: $white;
-$topbar-dropdown-link-bg-hover: $oil;
+$topbar-dropdown-link-bg-hover: $elegant;
 // $topbar-dropdown-link-weight: $font-weight-normal;
 // $topbar-dropdown-toggle-size: 5px;
 $topbar-dropdown-toggle-color: $black;

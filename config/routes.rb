@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :reminders, only: :create
   end
 
+  resources :reminders, only: :destroy
+
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/sign_out', to: 'sessions#destroy'
 end

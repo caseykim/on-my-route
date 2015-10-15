@@ -1,4 +1,6 @@
 class RemindersController < ApplicationController
+  before_action :authenticate_user!
+
   def create
     @user = User.find(params[:user_id])
     @user.update_attributes(user_params)
@@ -10,6 +12,18 @@ class RemindersController < ApplicationController
     else
       flash[:alert] = @user.errors.full_messages.join(", ")
       flash[:alert] += "\n" + @reminder.errors.full_messages.join(", ")
+      redirect_to :back
+    end
+  end
+
+  def destroy
+    @reminder = Reminder.find(params[:id])
+    if current_user == @reminder.user
+      @reminder.destroy
+      flash[:success] = "You will no longer get a reminder for #{@reminder.line.name}"
+      redirect_to user_path(@reminder.user)
+    else
+      flash[:alert] = 'You have no permission to delete this reminder'
       redirect_to :back
     end
   end

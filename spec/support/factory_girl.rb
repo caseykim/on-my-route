@@ -5,7 +5,21 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     password 'password'
     password_confirmation 'password'
+    name 'Test User'
+    phone_number '+11234567890'
+
+    factory :user_with_reminder do
+      after(:create) do |user|
+        create(:reminder, user: user)
+      end
+    end
   end
+
+  factory :reminder do
+    user
+    line
+  end
+
 
   factory :line do
     sequence(:name) { |n| "line #{n}" }
