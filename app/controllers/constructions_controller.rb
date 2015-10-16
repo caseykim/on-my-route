@@ -10,6 +10,8 @@ class ConstructionsController < ApplicationController
     else
       @constructions = Construction.all
     end
+
+    respond_to(:html, :js)
   end
 
   def new
