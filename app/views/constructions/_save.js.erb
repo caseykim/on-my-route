@@ -1,0 +1,15 @@
+$("div.errors").html("");
+$("div.home-errors").html("");
+$(".reveal-modal").html("<%= j render(partial: 'form') %>");
+<% if @construction.errors.any? %>
+  $("div.errors").html(errorAlert())
+<% end %>
+
+function errorAlert() {
+  var string = "";
+  string += "<div data-alert class='alert-box alert'>";
+  string += "<%= @errors %>";
+  string += "<a href='#' class='close'>&times;</a>";
+  string += "</div>";
+  return string;
+}

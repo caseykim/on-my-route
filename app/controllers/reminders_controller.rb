@@ -7,7 +7,7 @@ class RemindersController < ApplicationController
     @reminder = @user.reminders.new(reminder_params)
 
     if @reminder.save
-      flash[:success] = "Reminder set up successfully."
+      flash[:notice] = "Reminder set up successfully."
       redirect_to user_path(@user)
     else
       flash[:alert] = @user.errors.full_messages.join(", ")
@@ -21,7 +21,7 @@ class RemindersController < ApplicationController
     if current_user == @reminder.user
       @reminder.destroy
       message = "You will no longer get a reminder for #{@reminder.line.name}"
-      flash[:success] = message
+      flash[:notice] = message
       redirect_to user_path(@reminder.user)
     else
       flash[:alert] = 'You have no permission to delete this reminder'

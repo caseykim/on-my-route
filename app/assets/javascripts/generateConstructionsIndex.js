@@ -1,7 +1,7 @@
 $(document).ready(function(){
-  $(".side-column").click(function(){
+  $(".side-column li").click(function(){
     event.preventDefault();
-    var url = $(event.target).attr("href");
+    var url = $(this).find("a").attr("href");
     $.ajax({
           type: "GET",
           url: url,
