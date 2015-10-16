@@ -1,3 +1,3 @@
-$('body').on('click', '#close-modal', function() {
-  $("#newConstruction").foundation('reveal','close');;
+$("body").on("click", "#close-modal", function() {
+  $("#newConstruction").foundation("reveal","close");;
 });

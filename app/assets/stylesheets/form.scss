@@ -1,4 +1,4 @@
-@mixin lato-book { font-family: 'Lato', sans-serif; font-weight: 300; }
+@mixin lato-book { font-family: "Lato", sans-serif; font-weight: 300; }
 $white: #ffffff;
 $grey: #afb7c3;
 
@@ -34,7 +34,7 @@ $grey: #afb7c3;
 .row {
 
   &.header {
-    background: url('/lights.jpg') no-repeat center center;
+    background: url("/lights.jpg") no-repeat center center;
     -moz-background-size: cover;
     -o-background-size: cover;
     -webkit-background-size: cover;
