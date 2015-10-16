@@ -1,44 +1,51 @@
 @mixin lato-book { font-family: 'Lato', sans-serif; font-weight: 300; }
 $white: #ffffff;
+$grey: #afb7c3;
 
 .form {
-  margin: auto;
-  width: 80%;
-  max-width: 750px;
   background: $white;
+  margin: auto;
+  max-width: 750px;
+  width: 80%;
 
   .button {
+    display: inline;
     margin-top: 10px;
     width: 100%;
-    display: inline;
+  };
+
+  .row {
+    max-width: none;
+    padding: 0 2.5em;
+  };
+
+  h1 {
+    @include lato-book;
+    border-bottom: 1px solid hsla(100%, 100%, 100%, 0.3);
+    color: $white;
+    display: inline-block;
+    font-size: pxtoem(45, 16);
+    font-weight: 100;
+    margin: 0 0 0.1em;
+    padding: 0 0 0.4em;
   };
 }
 
-.form .row {
-  padding: 0 2.5em;
-  max-width: none;
+.row {
+
   &.header {
-    padding: 1.5em 2em;
-    border-bottom: 1px solid grey;
-    background: url(/lights.jpg) no-repeat center center;
-    -webkit-background-size: cover;
+    background: url('/lights.jpg') no-repeat center center;
     -moz-background-size: cover;
     -o-background-size: cover;
+    -webkit-background-size: cover;
     background-size: cover;
+    border-bottom: 1px solid $grey;
     color: $white;
+    padding: 1.5em 2em;
   }
-  &.body {
-    padding: .5em 2.5em 1em;
-  }
-}
 
-.form h1 {
-  @include lato-book;
-  color: $white;
-  display: inline-block;
-  font-weight: 100;
-  font-size: pxtoem(45, 16);
-  border-bottom: 1px solid hsla(100%, 100%, 100%, 0.3);
-  margin: 0 0 0.1em 0;
-  padding: 0 0 0.4em 0;
+  &.body {
+    padding: 0.5em 2.5em 1em;
+  }
+
 }

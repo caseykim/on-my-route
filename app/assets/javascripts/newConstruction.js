@@ -9,7 +9,7 @@ $(document).ready(function(){
       return false;
     });
   });
-  $('form').submit(function (e) {
+  $('form').submit(function () {
       var url = $(this).attr('action');
       var valuesToSubmit = $(this).serialize();
       $.ajax({
@@ -18,7 +18,7 @@ $(document).ready(function(){
           data: valuesToSubmit,
           dataType: "script"
       })
-      .done(function(data){
+      .done(function(){
         return false;
       });
   });
