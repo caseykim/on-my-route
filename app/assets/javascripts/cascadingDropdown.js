@@ -1,5 +1,5 @@
-$(document).ready(function(){
-  $('select#construction_line_id').change(function(){
+$(function(){
+  $('body').on('change', 'select#construction_line_id', function(){
     $.ajax({
       type: 'GET',
       url: '/lines/' + $(this).val() + '/stations',

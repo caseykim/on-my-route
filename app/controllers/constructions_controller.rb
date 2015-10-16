@@ -1,4 +1,6 @@
 class ConstructionsController < ApplicationController
+  before_action :authenticate_user!, except: :index
+
   def index
     if params[:line_id]
       line = Line.find(params[:line_id])
@@ -9,24 +11,39 @@ class ConstructionsController < ApplicationController
       @constructions = Construction.all
     end
     @construction = Construction.new
+
+    respond_to(:html, :js)
   end
 
   def new
-    if signed_in?
-      @construction = Construction.new
-    else
-      authenticate_user!
+    @construction = Construction.new
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
   def create
     @construction = current_user.constructions.new(construction_params)
-    if @construction.save
-      flash[:success] = 'New construction added successfully.'
-      redirect_to constructions_path
-    else
-      flash[:alert] = @construction.errors.full_messages.join(', ')
-      render :new
+    respond_to do |format|
+      if @construction.save
+        format.html do
+          flash[:notice] = 'New construction added successfully.'
+          redirect_to constructions_path
+        end
+        format.js do
+          @constructions = Construction.all
+          render :index
+        end
+      else
+        format.html do
+          flash[:alert] = @construction.errors.full_messages.join(', ')
+          render :new
+        end
+        format.js do
+          @errors = @construction.errors.full_messages.join(', ')
+        end
+      end
     end
   end
 
@@ -45,7 +62,7 @@ class ConstructionsController < ApplicationController
   def update
     @construction = Construction.find(params[:id])
     if @construction.update_attributes(construction_params)
-      flash[:success] = 'Construction updated successfully.'
+      flash[:notice] = 'Construction updated successfully.'
       redirect_to constructions_path
     else
       flash[:alert] = @construction.errors.full_messages.join(", ")
@@ -57,7 +74,7 @@ class ConstructionsController < ApplicationController
     construction = Construction.find(params[:id])
     if signed_in? && current_user == construction.user
       construction.destroy
-      flash[:success] = 'Construction deleted successfully.'
+      flash[:notice] = 'Construction deleted successfully.'
       redirect_to constructions_path
     elsif !signed_in?
       authenticate_user!

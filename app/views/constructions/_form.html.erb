@@ -3,12 +3,14 @@
     <h1>Construction &nbsp;</h1>
     <p>Thank you for contributing!</p>
   </div>
+  <div class="errors"></div>
   <div class="row body">
     <%= form_for @construction, remote: true do |f| %>
       <div class="large-4 columns">
         <%= f.label :line %>
         <%= f.collection_select :line_id, Line.all, :id, :name, prompt: "Select Line" %>
       </div>
+
       <div class="large-4 medium-6 columns">
         <%= f.label :start_station %>
         <%= f.collection_select :start_station_id, Line.first.stations, :id, :name, prompt: "Select Line first" %>
@@ -48,7 +50,7 @@
         <%= f.submit class: "button info" %>
       </div>
 
-      <%= link_to "Back", :back, class: "right" %>
+      <%= link_to "Back", "#", class: "right", id: "close-modal" %>
     <% end %>
   </div>
 </div>
