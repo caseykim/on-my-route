@@ -1,0 +1,49 @@
+<% @constructions.each do |construction| %>
+  <div class="construction">
+    <fieldset id="<%= construction.id %>">
+      <legend style="color:<%= construction.line.color %>">
+        <%= fa_icon "subway" %>
+        <%= construction.line.name %>
+        <% if signed_in? && current_user == construction.user %>
+          <%= link_to "edit", edit_construction_path(construction) %>
+          <%= link_to "delete", construction,
+            method: :delete,
+            style: "color:grey",
+            data: {confirm: "Are you sure?"} %>
+        <% end %>
+      </legend>
+      <table>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+          <th>Starting on</th>
+          <th>Ending on</th>
+          <th>Starts at (approx)</th>
+          <th>Ends at (approx)</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><%= construction.start_station.name %></td>
+          <td><%= construction.end_station.name %></td>
+          <td><%= construction.start_date %></td>
+          <td><%= construction.end_date %></td>
+          <td><%= construction.start_time %></td>
+          <td>
+            <% if construction.end_time != "" %>
+              <%= construction.end_time %>
+            <% else %>
+              Closing
+            <% end %>
+          </td>
+          <td>
+            <% if construction.description != "" %>
+              <%= construction.description %>
+            <% else %>
+              No description provided
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+  </div>
+<% end %>
