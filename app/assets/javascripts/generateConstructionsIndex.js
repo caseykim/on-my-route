@@ -1,11 +1,11 @@
 $(document).ready(function(){
   $(".side-column").click(function(){
     event.preventDefault();
-    url = $(event.target).attr("href");
+    var url = $(event.target).attr("href");
     $.ajax({
-          type: 'GET',
+          type: "GET",
           url: url,
-          dataType: 'script'
+          dataType: "script"
         });
   });
 });
