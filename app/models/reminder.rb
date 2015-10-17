@@ -15,8 +15,10 @@ class Reminder < ActiveRecord::Base
     sid = ENV['TWILIO_ACCOUNT_SID']
     token = ENV['TWILIO_AUTH_TOKEN']
     @client = Twilio::REST::Client.new(sid, token)
-    reminder = "Hi, #{user.name}.Construction on #{line.name} line will start within an hour."
-    reminder += " Visit http://onmyway-t.herokuapp.com/lines/#{line.id}/constructions"
+    reminder = "Hi, #{user.name}.Construction on #{line.name}"
+    reminder += " line will start within an hour. Visit "
+    url = "http://onmyway-t.herokuapp.com/lines/#{line.id}/constructions"
+    reminder += url
     reminder += " for construction details"
     message = @client.account.messages.create(
       from: @twilio_number,

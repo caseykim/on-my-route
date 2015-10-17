@@ -7,7 +7,7 @@ $(function(){
 });
 
 $(function(){
-  $('body').on('click', '.show-options', function(){
-    $(this).siblings('.options').toggle();
+  $("body").on("click", ".show-options", function(){
+    $(this).siblings(".options").toggle();
   });
 });
