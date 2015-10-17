@@ -19,11 +19,14 @@
                 <%= fa_icon "subway" %>
                 <%= construction.line.name %>
                 <% if signed_in? && current_user == construction.user %>
+                <a href="#" class="show-options"><%= fa_icon "cog" %></a>
+                <div class="options right">
                   <%= link_to "edit", edit_construction_path(construction) %>
                   <%= link_to "delete", construction,
                     method: :delete,
                     style: "color:grey",
                     data: {confirm: "Are you sure?"} %>
+                </div>
                 <% end %>
               </legend>
               <table>
@@ -69,8 +72,9 @@
         <%= render "form" %>
         <a class="close-reveal-modal" aria-label="Close">&#215;</a>
       </div>
-      <%= link_to "Post New Construction Alert", "", "data-reveal-id".to_sym => "newConstruction", class: "small button", id:"new-construction" %>
-      <!-- <%= link_to "Post New Construction Alert", new_construction_path, class: "small button" %> -->
+      <% if current_user %>
+        <%= link_to "Post New Construction Alert", "", "data-reveal-id".to_sym => "newConstruction", class: "small button", id:"new-construction" %>
+      <% end %>
     </div>
     <div class="small-3 columns">
       <div class="side-column">

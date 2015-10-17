@@ -9,7 +9,7 @@ $(document).ready(function(){
       return false;
     });
   });
-  $("form").submit(function () {
+  $("form.construction-form").submit(function () {
       var valuesToSubmit = $(this).serialize();
       $.ajax({
           type: "POST",

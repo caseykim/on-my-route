@@ -5,9 +5,9 @@ class Reminder < ActiveRecord::Base
   validates :user, presence: true
   validates :line, presence: true
   validate :user_name_and_phone_number
-  validates :user, uniqueness: {
-    scope: :line,
-    message: 'already has a reminder for this line'
+  validates :line, uniqueness: {
+    scope: :user,
+    message: 'reminder already exists'
   }
 
   def remind
@@ -15,10 +15,11 @@ class Reminder < ActiveRecord::Base
     sid = ENV['TWILIO_ACCOUNT_SID']
     token = ENV['TWILIO_AUTH_TOKEN']
     @client = Twilio::REST::Client.new(sid, token)
-    reminder = "Hi, #{user.name}.
-      Construction on #{line.name} line will start within an hour.
-      Visit http://onmyway-t.herokuapp.com/lines/#{line.id}/constructions
-      for construction details"
+    reminder = "Hi, #{user.name}.Construction on #{line.name}"
+    reminder += " line will start within an hour. Visit "
+    url = "http://onmyway-t.herokuapp.com/lines/#{line.id}/constructions"
+    reminder += url
+    reminder += " for construction details"
     message = @client.account.messages.create(
       from: @twilio_number,
       to: user.phone_number,

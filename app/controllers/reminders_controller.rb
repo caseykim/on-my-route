@@ -5,7 +5,6 @@ class RemindersController < ApplicationController
     @user = User.find(params[:user_id])
     @user.update_attributes(user_params)
     @reminder = @user.reminders.new(reminder_params)
-
     if @reminder.save
       flash[:notice] = "Reminder set up successfully."
       redirect_to user_path(@user)

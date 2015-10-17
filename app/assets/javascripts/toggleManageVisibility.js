@@ -5,3 +5,9 @@ $(function(){
     $a.toggleClass("hide");
   });
 });
+
+$(function(){
+  $("body").on("click", ".show-options", function(){
+    $(this).siblings(".options").toggle();
+  });
+});
