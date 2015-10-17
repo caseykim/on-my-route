@@ -1416,14 +1416,14 @@ $topbar-title-font-size: rem-calc(30);
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $black;
-// $topbar-link-color-hover: $white;
+$topbar-link-color-hover: $oil;
 // $topbar-link-color-active: $chicago-dirt;
 // $topbar-link-color-active-hover: $white;
 // $topbar-link-weight: $font-weight-normal;
 $topbar-link-font-size: rem-calc(13);
 $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg: $topbar-bg;
-$topbar-link-bg-hover: $white;
+$topbar-link-bg-hover: $transparent;
 // $topbar-link-bg-color-hover: $charcoal;
 $topbar-link-bg-active: $white;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);

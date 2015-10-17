@@ -1,9 +1,9 @@
-$("div.home-errors").html("<%= escape_javascript(render 'error') %>");
+$("div.home-errors").html("");
 $('#constructions').html("<%= j render(partial: 'constructions_list') %>");
 $("div.errors").html(successAlert());
 setTimeout(function(){
   $("#newConstruction").foundation('reveal','close');
-}, 1500);
+}, 1000);
 
 
 function successAlert() {

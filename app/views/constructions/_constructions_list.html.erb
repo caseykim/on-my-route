@@ -5,11 +5,14 @@
         <%= fa_icon "subway" %>
         <%= construction.line.name %>
         <% if signed_in? && current_user == construction.user %>
+        <a href="#" class="show-options"><%= fa_icon "cog" %></a>
+        <div class="options right">
           <%= link_to "edit", edit_construction_path(construction) %>
           <%= link_to "delete", construction,
             method: :delete,
             style: "color:grey",
             data: {confirm: "Are you sure?"} %>
+        </div>
         <% end %>
       </legend>
       <table>
