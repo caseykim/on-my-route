@@ -13,6 +13,7 @@ feature 'User deletes a reminder', %(
 ) do
 
   let(:user) { FactoryGirl.create(:user_with_reminder) }
+  before { FactoryGirl.create(:line_with_stations) }
 
   scenario 'user deletes a reminder' do
     reminder = user.reminders.first
