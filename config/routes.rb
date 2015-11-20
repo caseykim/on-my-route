@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  authenticated :user do
+    root 'constructions#index', as: 'authenticated_root'
+  end
   root 'homes#index'
   devise_for :users
 
