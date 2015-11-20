@@ -14,6 +14,7 @@ feature 'User deletes a construction posting', %(
 
   let(:user) { FactoryGirl.create(:user) }
   let(:construction) { FactoryGirl.create(:construction, user: user) }
+  before { FactoryGirl.create(:line_with_stations) }
 
   scenario 'user cannot delete construction if not signed in' do
     page.driver.submit :delete, construction_path(construction), {}

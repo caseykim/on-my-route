@@ -5,6 +5,9 @@ feature 'user signs in', %Q{
   I want to sign in
   So that I can regain access to my account
 } do
+
+  before { FactoryGirl.create(:line_with_stations) }
+
   scenario 'specify valid credentials' do
     user = FactoryGirl.create(:user)
 
