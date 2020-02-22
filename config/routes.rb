@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     root 'constructions#index', as: 'authenticated_root'
   end
   root 'homes#index'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :constructions, except: :show
 
@@ -18,6 +18,5 @@ Rails.application.routes.draw do
 
   resources :reminders, only: :destroy
 
-  get '/auth/:provider/callback', to: 'sessions#create'
   get '/sign_out', to: 'sessions#destroy'
 end
