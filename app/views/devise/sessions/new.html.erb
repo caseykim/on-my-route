@@ -21,9 +21,9 @@
 
     <div class="actions">
       <%= f.submit "Log in", class: 'button' %>
-      <a href="/auth/facebook" class='button'>
+      <%= link_to user_omniauth_authorize_path(:facebook), class:'button' do %>
         <%= fa_icon "facebook-official", text: "Sign in with", right: true %>
-      </a>
+      <% end %>
     </div>
   <% end %>
 
